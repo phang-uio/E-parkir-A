@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Konfirmasi Pembayaran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #eef2f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-card {
+            background-color: #fff;
+            padding: 35px 30px;
+            border-radius: 15px;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .form-card h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: #2c3e50;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            row-gap: 12px;
+            column-gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .info-grid label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .info-grid span {
+            font-weight: 600;
+            color: #222;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn-danger-full {
+            width: 100%;
+            padding: 13px;
+            background-color: #e74c3c;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-danger-full:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+
+    <h2>💳 Konfirmasi Pembayaran</h2>
+
+    <div class="info-grid">
+    <label>Plat:</label>
+    <span>{{ plat }}</span>
+
+    <label>Jenis:</label>
+    <span>{{ jenis }}</span>
+
+    <label>Durasi:</label>
+    <span>{{ durasi }}</span>
+
+    <label>Estimasi Biaya:</label>
+    <span>Rp {{ biaya }}</span>
+</div>
+
+{% if error %}
+    <div style="background:#fdecea; color:BLACK; padding:10px; border-radius:8px; margin-bottom:15px; text-align:center; font-weight:500;">
+        {{ error }}
+    </div>
+{% endif %}
+
+<form method="POST">
+
+        <div class="form-group">
+            <label>Masukkan Kode Bayar</label>
+            <input type="text" name="kode" placeholder="Kode bayar" required>
+        </div>
+
+        <button type="submit" class="btn-danger-full">
+            Konfirmasi & Bayar
+        </button>
+    </form>
+
+</div>
+
+</body>
+</html>

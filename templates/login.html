@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login E-Parkir</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-body">
+
+<div class="login-container">
+
+    <!-- KIRI - JAM -->
+    <div class="login-left">
+        <div class="clock" id="clock">00:00:00</div>
+        <div class="date" id="date"></div>
+    </div>
+
+    <!-- KANAN - FORM -->
+    <div class="login-right">
+        <div class="login-box">
+            <h2>Login E-Parkir</h2>
+
+            {% if error %}
+            <p class="error">{{error}}</p>
+            {% endif %}
+
+            <form method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+
+    const time = now.toLocaleTimeString();
+    const date = now.toLocaleDateString("id-ID", {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    document.getElementById("clock").innerHTML = time;
+    document.getElementById("date").innerHTML = date;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Parkir Masuk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4e73df, #1cc88a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-card {
+            background: #fff;
+            width: 100%;
+            max-width: 420px;
+            padding: 35px 30px;
+            border-radius: 18px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-card h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #4e73df;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(78,115,223,0.2);
+        }
+
+        .btn-primary-full {
+            width: 100%;
+            padding: 13px;
+            background: #4e73df;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary-full:hover {
+            background: #2e59d9;
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 18px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+
+    <h2>🚗 Parkir Masuk</h2>
+
+    <form method="POST">
+
+        <div class="form-group">
+            <label>Plat Nomor</label>
+            <input type="text" name="plat" placeholder="Contoh: KB 1234 XX" required>
+        </div>
+
+        <div class="form-group">
+            <label>Jenis Kendaraan</label>
+            <select name="jenis" required>
+                <option value="">-- Pilih Jenis --</option>
+                <option value="motor">Motor</option>
+                <option value="mobil">Mobil</option>
+                <option value="truk">Truk</option>
+                <option value="bus">Bus</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-primary-full">
+            Konfirmasi Bayar
+        </button>
+
+    </form>
+
+    <a href="/dashboard" class="back-link">← Kembali ke Dashboard</a>
+
+</div>
+
+</body>
+</html>

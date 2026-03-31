@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Struk Parkir</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script>
+        function printStruk() {
+            window.print();
+        }
+    </script>
+</head>
+<body>
+
+<div class="struk-container">
+
+    <div class="struk-center">
+        <h3>PARKIR </h3>
+        <div>No: {{ no_transaksi }}</div>
+    </div>
+
+    <hr class="struk-hr">
+
+    <div class="struk-row">
+        <span>Plat</span>
+        <span>{{ plat }}</span>
+    </div>
+
+    <div class="struk-row">
+        <span>Jenis</span>
+        <span>{{ jenis }}</span>
+    </div>
+
+    <div class="struk-row">
+        <span>Durasi</span>
+        <span>{{ durasi }}</span>
+    </div>
+
+    <hr class="struk-hr">
+
+    <div class="struk-row struk-bold">
+        <span>Total</span>
+        <span>Rp {{ biaya }}</span>
+    </div>
+
+    <hr class="struk-hr">
+
+    <div class="struk-qr">
+        <img src="/{{ qr_image }}" width="120">
+    </div>
+
+    <hr class="struk-hr">
+
+    <div class="struk-center">
+        Terima Kasih 🙏
+    </div>
+
+    <button class="struk-btn print-btn" onclick="window.print()">🖨 Print</button>
+
+    <a href="/dashboard">
+        <button class="struk-btn done-btn">Selesai</button>
+    </a>
+
+</div>
+
+</body>
+</html>

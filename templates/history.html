@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>History Parkir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f6fa;
+            margin: 0;
+        }
+        .header-top {
+            background-color: #4e73df;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #clock {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .top-menu {
+            margin: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .top-menu a {
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+        }
+        .btn-secondary { background-color: #858796; }
+        .btn-danger { background-color: #e74a3b; }
+        .card {
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f8f9fc;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .total-bayar {
+            font-weight: bold;
+            color: #1cc88a;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER + JAM REAL-TIME -->
+<div class="header-top">
+    <h2>📜 History Parkir</h2>
+    <div id="clock"></div>
+</div>
+
+<!-- TOP MENU -->
+<div class="top-menu">
+    <a href="/dashboard" class="btn-secondary">⬅ Dashboard</a>
+    <a href="/logout" class="btn-danger">🔒 Logout</a>
+</div>
+
+<!-- TABEL HISTORY -->
+<div class="card">
+    <table>
+        <tr>
+            <th>Plat</th>
+            <th>Jenis</th>
+            <th>Jam Masuk</th>
+            <th>Jam Keluar</th>
+            <th>Total Bayar</th>
+        </tr>
+        {% for h in history %}
+        <tr>
+            <td>{{ h.plat }}</td>
+            <td>{{ h.jenis }}</td>
+            <td>{{ h.masuk }}</td>
+            <td>{{ h.keluar }}</td>
+            <td class="total-bayar">Rp {{ "{:,}".format(h.total_bayar).replace(",", ".") }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const clock = document.getElementById('clock');
+    const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    clock.textContent = now.toLocaleTimeString('id-ID', options);
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>

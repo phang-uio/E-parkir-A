@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Keluar Parkir</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="form-page">
+
+<div class="form-container">
+    <div class="form-card">
+
+        <h2>🚗 Keluar Parkir</h2>
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label>Pilih Kendaraan</label>
+                <select name="plat" required>
+                    {% for p in data %}
+                    <option value="{{ p[0] }}">
+                        {{ p[1] }} - {{ p[2] }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn-danger-full">
+                Proses Keluar
+            </button>
+
+        </form>
+
+        <a href="/dashboard" class="back-link">
+            ← Kembali ke Dashboard
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>

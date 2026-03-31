@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Parkir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ====================== GLOBAL ====================== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2, h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* ====================== HEADER ====================== */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px;
+            background-color: #1E88E5;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        #clock {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* ====================== TOP MENU ====================== */
+        .top-menu {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { background-color: #1E88E5; } /* Parkir Masuk */
+        .btn-secondary { background-color: #43A047; } /* History & Pendapatan */
+        .btn-pendapatan { background-color: #FDD835; color: black; } /* Pendapatan */
+        .btn-danger { background-color: #E53935; } /* Logout */
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: scale(1.03);
+        }
+
+        /* ====================== CARD ====================== */
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* ====================== TABLE ====================== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #1E88E5;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #43A047;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .action-btn:hover {
+            opacity: 0.85;
+            transform: scale(1.05);
+        }
+
+        /* ====================== RINGKASAN ====================== */
+        .card p {
+            font-size: 16px;
+            margin: 6px 0;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER + JAM -->
+<div class="header-top">
+    <h2>🚗 Dashboard Parkir</h2>
+    <div id="clock"></div>
+</div>
+
+<!-- TOP MENU -->
+<div class="top-menu">
+    <a href="/parkir_masuk" class="btn btn-primary">➕ Parkir Masuk</a>
+    <a href="/history" class="btn btn-secondary">📜 History</a>
+    <a href="/pendapatan" class="btn btn-pendapatan">💰 Pendapatan</a>
+    <a href="/logout" class="btn btn-danger">🔒 Logout</a>
+</div>
+
+<!-- KENDARAAN MASIH PARKIR -->
+<div class="card">
+    <h3>Kendaraan Masih Parkir</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Plat</th>
+            <th>Jenis</th>
+            <th>Masuk</th>
+            <th>Kode Bayar</th>
+            <th>Aksi</th>
+        </tr>
+        {% for p in data %}
+        <tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>{{ p[3] }}</td>
+            <td><b>{{ p[4] }}</b></td>
+            <td>
+                <a href="/parkir_keluar/{{ p[0] }}">
+                    <button class="action-btn">Proses Bayar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const clock = document.getElementById('clock');
+    const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    clock.textContent = now.toLocaleTimeString('id-ID', options);
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>
